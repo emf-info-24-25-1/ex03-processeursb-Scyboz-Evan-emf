@@ -18,7 +18,7 @@ public class CPU {
      * Cette constante (-1.0) représente une performance MIPS (Millions Instructions
      * Per Second) inconnue.
      */
-    static final double UNKNOWN_MIPS = -1.0;
+    public static final double UNKNOWN_MIPS = -1.0;
     
     /**
      * Attribut qui représente le nom du CPU.
