@@ -17,25 +17,26 @@ public class ServiceCPU {
     /**
      * Constantes indiquant le nombre maximum de CPUs que peut contenir notre liste.
      */
-    // VOTRE CODE ICI...
+    private static final int NBRE_CPUS = 20;
 
     /**
      * Attribut contenant le tableau des CPUs.
      */
-    // VOTRE CODE ICI...
+    private CPU[] cpus = new CPU[NBRE_CPUS];
 
     /**
      * Attribut contenant la référence au contrôleur de l'application MVC
      * "Processeur".
      */
-    // VOTRE CODE ICI...
+    private Controller refCtrl;
 
     /**
      * Constructeur de la classe ServiceCPU. Les attributs de la classe ServiceCPU
      * sont initialisés.
      */
-    public ServiceCPU() {
-        // VOTRE CODE ICI...
+    public ServiceCPU(CPU[] c, Controller r) {
+        this.cpus = c;
+        this.refCtrl = r;
     }
 
     /**
@@ -47,8 +48,18 @@ public class ServiceCPU {
      * @param cpu le nouveau CPU à stocker dans notre liste
      * @return vrai si une place libre a été trouvée dans notre liste de cpus
      */
-    public boolean ajouterUnNouveau(CPU cpu) {
-        // VOTRE CODE ICI...
+    public boolean ajouterUnNouveau(CPU foo) {
+        boolean bar = false;
+        if (cpus != null) {
+            for (byte i = 0; i < NBRE_CPUS; i++) {
+                if (cpus[i] == null) {
+                    cpus[i] = foo;
+                    bar = true;
+                    break;
+                }
+            }
+        }
+        return bar;
     }
 
     /**
@@ -57,7 +68,7 @@ public class ServiceCPU {
      * @return la liste des CPUs
      */
     public CPU[] obtenirLaListe() {
-        // VOTRE CODE ICI...
+        return cpus;
     }
 
     /**
@@ -67,7 +78,13 @@ public class ServiceCPU {
      * @return le nombre de CPUs contenus dans notre liste
      */
     public int nombreDeCPUDansLaListe() {
-        // VOTRE CODE ICI...
+        int foo = 0;
+        if (cpus != null) {
+            for (byte i = 0; i < NBRE_CPUS; i++) {
+                foo += cpus[i] == null ? 0 : 1;
+            }
+        }
+        return foo;
     }
 
     /**
@@ -78,7 +95,7 @@ public class ServiceCPU {
      * @return la taille de la liste de CPU
      */
     public int tailleDeLaListe() {
-        // VOTRE CODE ICI...
+        return NBRE_CPUS;
     }
 
     /**
@@ -90,7 +107,7 @@ public class ServiceCPU {
      *         limites du tableau
      */
     public CPU obtenirUnElement(int indice) {
-        // VOTRE CODE ICI...
+        return cpus != null ? cpus[indice] : null; // On peut pas juste dire l'index? Ou alors j'ai mal compris
     }
 
     /**
@@ -99,7 +116,7 @@ public class ServiceCPU {
      * @return la référence au contrôleur de l'application MVC "Processeur"
      */
     public Controller getRefCtrl() {
-        // VOTRE CODE ICI...
+        return refCtrl;
     }
 
     /**
@@ -108,7 +125,7 @@ public class ServiceCPU {
      * @param refCtrl référence au contrôleur de l'application MVC "Processeur"
      */
     public void setRefCtrl(Controller refCtrl) {
-        // VOTRE CODE ICI...
+        this.refCtrl = refCtrl;
     }
 
 }
